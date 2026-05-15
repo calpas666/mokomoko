@@ -1,1 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日のご飯ルーレット</title>
+    <style>
+        /* ここは見た目（CSS）の設定です */
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #fff8e1; /* 美味しそうな薄いオレンジの背景 */
+        }
+        h1 {
+            color: #ff9800;
+        }
+        #result {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px auto;
+            padding: 30px;
+            border: 3px dashed #ff9800;
+            border-radius: 15px;
+            background-color: white;
+            display: inline-block;
+            min-width: 250px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: 0.2s;
+        }
+        button:hover {
+            background-color: #e68a00; /* マウスを乗せたら少し濃くする */
+        }
+    </style>
+</head>
+<body>
 
+    <h1>今日のご飯どうする？</h1>
+    <div id="result">？</div>
+    <br>
+    <button onclick="pickMeal()">決める！</button>
+
+    <script>
+        // ここは動き（JavaScript）の設定です
+
+        // 1. ご飯の候補リストを作る
+        const meals = [
+            "カレーライス🍛",
+            "ハンバーグ🍽️",
+            "オムライス🥚",
+            "ラーメン🍜",
+            "うどん・そば🍲",
+            "パスタ🍝",
+            "焼肉🥩",
+            "お寿司🍣",
+            "ピザ🍕",
+            "疲れたからコンビニ！🍙",
+            "今日はデリバリー！🛵"
+        ];
+
+        // 2. ボタンが押されたときの処理
+        function pickMeal() {
+            // リストの中からランダムに数字を選ぶ
+            const randomIndex = Math.floor(Math.random() * meals.length);
+            
+            // 選ばれた数字のメニューを取り出す
+            const selectedMeal = meals[randomIndex];
+            
+            // 画面の「？」の部分を、選ばれたメニューに書き換える
+            document.getElementById("result").innerText = selectedMeal;
+        }
+    </script>
+
+</body>
+</html>
