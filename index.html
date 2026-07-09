@@ -670,7 +670,23 @@ async function handleImageUpload(input){
         const data=JSON.parse(clean);
         if(data.items&&data.items.length){
           _imgItems=data.items;
-          document.getElementById("imgResult").innerHTML=`<div class="fs12 c-888 mb8">${data.description||""}</div>`+data.items.map((item,i)=>`<div class="fr" style="padding:10px 12px;background:#f8f8ff;border-radius:12px;margin-bottom:8px"><div style="flex:1"><div class="fw7 fs14">${item.name}</div><div class="fr" style="margin-top:4px"><span style="background:#764ba222;color:#764ba2;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">${item.category}</span>${item.estimated_price>0?`<span class="fs12 c-888">≈ ${yen(item.estimated_price)}</span>`:""}</div></div><button class="btn-green" onclick="applyImg(${i})">反映</button></div>`).join("");
+          document.getElementById("imgResult").innerHTML=`<div class="fs12 c-888 mb8">${data.description||""}</div>`
+            +data.items.map((item,i)=>`<div class="fr" style="padding:10px 12px;background:#f8f8ff;border-radius:12px;margin-bottom:8px">
+              <input type="checkbox" checked id="imgChk${i}" style="width:20px;height:20px;accent-color:#764ba2;flex-shrink:0">
+              <div style="flex:1;margin-left:8px"><div class="fw7 fs14">${item.name}</div><div class="fr" style="margin-top:4px">
+                <span style="background:#764ba222;color:#764ba2;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">${item.category}</span>
+                ${item.estimated_price>0?`<span class="fs12 c-888">≈ ${yen(item.estimated_price)}</span>`:""}
+              </div></div>
+              <button class="btn-green" onclick="applyImg(${i})">1件反映</button>
+            </div>`).join("")
+            +`<div class="fc" style="margin-top:12px">
+              <div class="fr" style="margin-bottom:8px">
+                <span class="fs12 c-888" style="flex:1">口座・支払方法を選択して一括追加</span>
+              </div>
+              <select class="inp" id="imgAccount">${state.accounts.map(a=>`<option value="${a.id}">${a.name}</option>`).join("")}</select>
+              <select class="inp" id="imgMethod">${METHODS.map(m=>`<option>${m}</option>`).join("")}</select>
+              <button onclick="addAllImg()" style="width:100%;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:12px;padding:14px;font-weight:700;font-size:15px;cursor:pointer">✅ チェック済みをすべて追加</button>
+            </div>`;
         }else{document.getElementById("imgResult").innerHTML='<div style="color:#e67e22;font-size:13px">商品を検出できませんでした</div>';}
       }catch{document.getElementById("imgResult").innerHTML='<div style="color:#e74c3c;font-size:13px">結果の解析に失敗しました</div>';}
     }
@@ -678,6 +694,25 @@ async function handleImageUpload(input){
     input.value="";
   };
   reader.readAsDataURL(file);
+}
+function addAllImg(){
+  const accId=Number(document.getElementById("imgAccount").value);
+  const method=document.getElementById("imgMethod").value;
+  if(!accId){alert("口座を選択してください");return;}
+  const today=new Date().toISOString().slice(0,10);
+  let count=0, totalAmt=0;
+  _imgItems.forEach((item,i)=>{
+    const chk=document.getElementById("imgChk"+i);
+    if(chk&&chk.checked&&item.estimated_price>0){
+      state.expenses.push({id:Date.now()+i,accountId:accId,date:today,amount:item.estimated_price,category:item.category,method,memo:item.name,satisfaction:3});
+      totalAmt+=item.estimated_price;
+      count++;
+    }
+  });
+  if(count===0){alert("追加できる項目がありません（価格が0の項目はスキップされます）");return;}
+  const acc=state.accounts.find(a=>a.id===accId);if(acc)acc.balance-=totalAmt;
+  saveState();renderAll();populateSelects();
+  document.getElementById("imgResult").innerHTML=`<div style="padding:16px;background:rgba(78,205,196,0.1);border-radius:12px;text-align:center"><div style="font-size:24px;margin-bottom:8px">✅</div><div class="fw7" style="color:#4ECDC4">${count}件の支出を追加しました</div><div class="fs13 c-888" style="margin-top:4px">合計: ${yen(totalAmt)}</div></div>`;
 }
 function applyImg(i){
   const item=_imgItems[i];if(!item)return;
@@ -694,5 +729,4 @@ function applyImg(i){
 init();
 </script>
 </body>
-</html>
 </html>
