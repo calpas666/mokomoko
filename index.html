@@ -34,8 +34,7 @@ body{min-height:100vh;background:linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)
 .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
 .cal-header{text-align:center;font-size:11px;font-weight:700;padding:4px 0}
 .cal-day{aspect-ratio:1;border:1px solid #f0f0f0;border-radius:10px;background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2px;font-size:12px;font-weight:600}
-.cal-day.today{border:2px solid #4ECDC4}
-.cal-day.selected{border:2px solid #764ba2;background:#f8f0ff}
+.cal-day.today{border:2px solid #4ECDC4}.cal-day.selected{border:2px solid #764ba2;background:#f8f0ff}
 .cal-amount{font-size:8px;font-weight:700;color:#e74c3c;line-height:1}
 .char-btn{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:26px;background:#f5f5f5;border:2px solid transparent;border-radius:14px;padding:8px 10px;cursor:pointer;transition:all 0.2s}
 .char-btn.active{background:rgba(168,85,247,0.15);border-color:#a855f7;transform:scale(1.12)}
@@ -48,8 +47,7 @@ body{min-height:100vh;background:linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)
 @keyframes fadeUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
 .fc{display:flex;flex-direction:column;gap:10px}
 .fr{display:flex;gap:8px;align-items:center}
-.tc{text-align:center}
-.c-888{color:#888}.c-aaa{color:#aaa}
+.tc{text-align:center}.c-888{color:#888}.c-aaa{color:#aaa}
 .fw7{font-weight:700}.fw8{font-weight:800}
 .fs11{font-size:11px}.fs12{font-size:12px}.fs13{font-size:13px}.fs14{font-size:14px}.fs15{font-size:15px}
 .mb4{margin-bottom:4px}.mb8{margin-bottom:8px}.mb12{margin-bottom:12px}.mb16{margin-bottom:16px}
@@ -62,7 +60,6 @@ body{min-height:100vh;background:linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)
 <div style="font-size:28px;cursor:pointer" onclick="openSettings()">⚙️</div>
 </div>
 
-<!-- セットアップ画面 -->
 <div id="setupScreen" style="display:none;padding:24px;text-align:center;color:#fff">
 <div style="font-size:64px;margin-bottom:16px">💰</div>
 <div style="font-size:28px;font-weight:800;margin-bottom:8px">家計簿アプリへようこそ</div>
@@ -83,43 +80,22 @@ body{min-height:100vh;background:linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)
 <button class="btn-primary" onclick="finishSetup()" style="background:linear-gradient(135deg,#c084fc,#a855f7);border-radius:16px;padding:16px;font-weight:800;font-size:16px">はじめる 🎉</button>
 </div>
 
-<!-- メイン画面 -->
 <div id="mainContent">
-<!-- ホーム -->
 <div class="tab-content active" id="tab-home">
-<div class="card">
-<div class="st">💰 総残高</div>
-<div class="balance-card">
-<div style="font-size:12px;opacity:0.8;margin-bottom:4px">すべての口座の合計</div>
-<div style="font-size:36px;font-weight:800" id="totalBalance">¥0</div>
-<div style="font-size:12px;opacity:0.7;margin-top:4px">今月の支出: <span id="totalExpenses">¥0</span></div>
-</div>
-<div id="accountList"></div>
-</div>
-<div class="card" id="budgetStatusCard">
-<div class="st" id="budgetStatusTitle">✅ 予算ステータス</div>
-<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px">
-<span>使用: <span id="budgetUsed">¥0</span></span><span>予算: <span id="budgetTotal">¥0</span></span>
-</div>
+<div class="card"><div class="st">💰 総残高</div>
+<div class="balance-card"><div style="font-size:12px;opacity:0.8;margin-bottom:4px">すべての口座の合計</div><div style="font-size:36px;font-weight:800" id="totalBalance">¥0</div><div style="font-size:12px;opacity:0.7;margin-top:4px">今月の支出: <span id="totalExpenses">¥0</span></div></div>
+<div id="accountList"></div></div>
+<div class="card" id="budgetStatusCard"><div class="st" id="budgetStatusTitle">✅ 予算ステータス</div>
+<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span>使用: <span id="budgetUsed">¥0</span></span><span>予算: <span id="budgetTotal">¥0</span></span></div>
 <div class="progress-bar" style="height:16px;margin-bottom:12px"><div class="progress-fill" id="budgetBar" style="background:#4ECDC4;width:0%"></div></div>
-<div class="grid-2">
-<div class="stat-box"><div class="fs11 c-888 mb4">残り予算</div><div style="font-size:20px;font-weight:800" id="remainBudget">¥0</div></div>
-<div class="stat-box"><div class="fs11 c-888 mb4">1日あたり</div><div style="font-size:20px;font-weight:800" id="dailyBudget">¥0</div><div style="font-size:10px;color:#aaa" id="remainDays"></div></div>
-</div>
-<div id="paceWarning" style="display:none;margin-top:10px;padding:10px 12px;border-radius:10px;font-size:12px;font-weight:600"></div>
-</div>
+<div class="grid-2"><div class="stat-box"><div class="fs11 c-888 mb4">残り予算</div><div style="font-size:20px;font-weight:800" id="remainBudget">¥0</div></div><div class="stat-box"><div class="fs11 c-888 mb4">1日あたり</div><div style="font-size:20px;font-weight:800" id="dailyBudget">¥0</div><div style="font-size:10px;color:#aaa" id="remainDays"></div></div></div>
+<div id="paceWarning" style="display:none;margin-top:10px;padding:10px 12px;border-radius:10px;font-size:12px;font-weight:600"></div></div>
 <div id="subAlertSection"></div>
-<div class="card">
-<div class="st">📂 カテゴリー別</div>
-<div id="catSummary"><div class="c-aaa fs13 tc" style="padding:20px 0">まだ支出がありません</div></div>
-</div>
+<div class="card"><div class="st">📂 カテゴリー別</div><div id="catSummary"><div class="c-aaa fs13 tc" style="padding:20px 0">まだ支出がありません</div></div></div>
 </div>
 
-<!-- 支出入力 -->
 <div class="tab-content" id="tab-expenses">
-<div class="card">
-<div class="st">✏️ 支出を入力</div>
-<div class="fc">
+<div class="card"><div class="st">✏️ 支出を入力</div><div class="fc">
 <select class="inp" id="expAccount"></select>
 <input type="date" class="inp" id="expDate">
 <input type="number" class="inp" placeholder="金額 (円)" id="expAmount">
@@ -128,95 +104,57 @@ body{min-height:100vh;background:linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)
 <input type="text" class="inp" placeholder="メモ（任意）" id="expMemo">
 <div><div class="fs12 c-888 mb4">満足度</div><div class="fr" id="satBtns"></div></div>
 <button class="btn-primary" onclick="submitExpense()">追加する</button>
-</div>
-</div>
-<div class="card">
-<div class="st">📋 支出履歴</div>
-<div id="expenseHistory"><div class="c-aaa fs13 tc" style="padding:20px 0">まだ支出がありません</div></div>
-</div>
+</div></div>
+<div class="card"><div class="st">📋 支出履歴</div><div id="expenseHistory"></div></div>
 </div>
 
-<!-- カレンダー -->
 <div class="tab-content" id="tab-calendar">
 <div class="card">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
 <button onclick="prevMonth()" style="background:rgba(118,75,162,0.1);border:none;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:700;font-size:16px;color:#764ba2">◀</button>
 <div class="fw8" style="font-size:16px" id="calTitle"></div>
-<button onclick="nextMonth()" style="background:rgba(118,75,162,0.1);border:none;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:700;font-size:16px;color:#764ba2">▶</button>
-</div>
+<button onclick="nextMonth()" style="background:rgba(118,75,162,0.1);border:none;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:700;font-size:16px;color:#764ba2">▶</button></div>
 <div class="tc mb12"><span class="fs13 c-888">月間支出: </span><span class="fw8" style="font-size:18px;color:#764ba2" id="calMonthTotal">¥0</span></div>
 <div class="calendar-grid" id="calGrid"></div>
-<div class="fr" style="justify-content:center;margin-top:12px">
-<span style="font-size:10px;color:#aaa">少</span>
-<div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.09)"></div>
-<div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.18)"></div>
-<div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.30)"></div>
-<div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.45)"></div>
-<div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.60)"></div>
-<span style="font-size:10px;color:#aaa">多</span>
+<div class="fr" style="justify-content:center;margin-top:12px"><span style="font-size:10px;color:#aaa">少</span><div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.09)"></div><div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.18)"></div><div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.30)"></div><div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.45)"></div><div style="width:16px;height:16px;border-radius:4px;background:rgba(255,107,107,0.60)"></div><span style="font-size:10px;color:#aaa">多</span></div>
 </div>
-</div>
-<div class="card" id="calDetail" style="display:none">
-<div class="st" id="calDetailTitle"></div>
-<div id="calDetailContent"></div>
-</div>
+<div class="card" id="calDetail" style="display:none"><div class="st" id="calDetailTitle"></div><div id="calDetailContent"></div></div>
 </div>
 
-<!-- グラフ -->
 <div class="tab-content" id="tab-graph">
 <div class="card"><div class="st">📊 予算進捗</div><div id="budgetProgress"></div></div>
 <div class="card"><div class="st">💳 支払方法別</div><div id="methodSummary"></div></div>
 </div>
 
-<!-- 口座 -->
 <div class="tab-content" id="tab-accounts">
 <div class="card"><div class="st">🏦 口座一覧</div><div id="accountCards"></div></div>
-<div class="card">
-<div class="st">➕ 入金を記録</div>
-<div class="fc">
+<div class="card"><div class="st">➕ 入金を記録</div><div class="fc">
 <select class="inp" id="incAccount"></select>
 <input type="number" class="inp" placeholder="金額" id="incAmount">
 <input type="text" class="inp" placeholder="メモ" id="incMemo">
 <button onclick="submitIncome()" style="background:linear-gradient(135deg,#4ECDC4,#44a39a);color:#fff;border:none;border-radius:12px;padding:14px;font-weight:700;font-size:15px;cursor:pointer">入金を追加</button>
-</div>
-</div>
-<div class="card">
-<div class="st">🆕 口座を追加</div>
-<div class="fc">
+</div></div>
+<div class="card"><div class="st">🆕 口座を追加</div><div class="fc">
 <input class="inp" placeholder="口座名" id="newAccName">
 <input type="number" class="inp" placeholder="初期残高" id="newAccBal">
 <button class="btn-primary" onclick="submitNewAccount()">口座を追加</button>
-</div>
-</div>
+</div></div>
 </div>
 
-<!-- サブスク -->
 <div class="tab-content" id="tab-subscriptions">
 <div id="subAlerts"></div>
-<div class="card">
-<div class="st">🔁 サブスク一覧</div>
-<div style="background:linear-gradient(135deg,#f093fb,#f5576c);border-radius:16px;padding:16px;color:#fff;margin-bottom:16px;text-align:center">
-<div style="font-size:12px;opacity:0.85">月額合計</div>
-<div style="font-size:28px;font-weight:800" id="subTotal">¥0</div>
-<div style="font-size:11px;opacity:0.75" id="subYearly">年間 ¥0</div>
-</div>
-<div id="subList"></div>
-</div>
-<div class="card">
-<div class="st">➕ サブスクを追加</div>
-<div class="fc">
+<div class="card"><div class="st">🔁 サブスク一覧</div>
+<div style="background:linear-gradient(135deg,#f093fb,#f5576c);border-radius:16px;padding:16px;color:#fff;margin-bottom:16px;text-align:center"><div style="font-size:12px;opacity:0.85">月額合計</div><div style="font-size:28px;font-weight:800" id="subTotal">¥0</div><div style="font-size:11px;opacity:0.75" id="subYearly">年間 ¥0</div></div>
+<div id="subList"></div></div>
+<div class="card"><div class="st">➕ サブスクを追加</div><div class="fc">
 <input class="inp" placeholder="サービス名" id="subName">
 <input type="number" class="inp" placeholder="月額（円）" id="subAmount">
-<div class="fs12 c-888">次回更新日</div>
-<input type="date" class="inp" id="subNext">
-<div class="fs12 c-888">最終利用日</div>
-<input type="date" class="inp" id="subLastUsed">
+<div class="fs12 c-888">次回更新日</div><input type="date" class="inp" id="subNext">
+<div class="fs12 c-888">最終利用日</div><input type="date" class="inp" id="subLastUsed">
 <button onclick="submitSub()" style="background:linear-gradient(135deg,#f093fb,#f5576c);color:#fff;border:none;border-radius:12px;padding:14px;font-weight:700;font-size:15px;cursor:pointer">追加する</button>
-</div>
-</div>
+</div></div>
 </div>
 
-<!-- AI -->
 <div class="tab-content" id="tab-ai">
 <div class="card">
 <div class="st">📸 画像で商品認識</div>
@@ -233,13 +171,11 @@ body{min-height:100vh;background:linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)
 <button class="btn-primary" onclick="fetchAI()" id="aiBtn">🐱 AIに分析してもらう</button>
 <div id="aiResult" style="display:none;margin-top:16px;background:linear-gradient(135deg,#f8f9ff,#f0f0ff);border-radius:16px;padding:16px;border:1px solid rgba(118,75,162,0.2)">
 <div class="fw7" style="color:#764ba2;margin-bottom:8px" id="aiResultTitle"></div>
-<div class="fs14" style="line-height:1.7;white-space:pre-wrap" id="aiResultText"></div>
-</div>
+<div class="fs14" style="line-height:1.7;white-space:pre-wrap" id="aiResultText"></div></div>
 </div>
 </div>
 </div>
 
-<!-- ナビ -->
 <div class="bottom-nav" id="bottomNav">
 <button class="nav-btn active" data-tab="home"><span class="icon">🏠</span><span class="label">ホーム</span></button>
 <button class="nav-btn" data-tab="expenses"><span class="icon">✏️</span><span class="label">支出</span></button>
@@ -251,478 +187,366 @@ body{min-height:100vh;background:linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)
 </div>
 </div>
 
-<!-- 設定モーダル -->
 <div id="settingsModal" style="display:none" class="modal-overlay" onclick="if(event.target===this)closeSettings()">
 <div class="modal">
 <div style="font-size:20px;font-weight:800;margin-bottom:16px">⚙️ 設定</div>
-<div class="mb16">
-<div class="fs13 fw7 mb8">お名前</div>
-<input class="inp" id="setName" placeholder="お名前">
-</div>
-<div class="mb16">
-<div class="fs13 fw7 mb8">🎨 テーマ</div>
-<div id="settingsThemes" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"></div>
-</div>
-<div class="mb16">
-<div class="fs13 fw7 mb8">🔑 Gemini APIキー</div>
-<div class="fs11 c-888 mb8">AI機能（画像認識・アドバイス）に必要<br>取得: <span style="color:#7c3aed">aistudio.google.com</span>（無料）</div>
-<input class="inp" id="setApiKey" placeholder="AIza..." type="password">
-</div>
-<div class="mb16">
-<div class="fs13 fw7 mb8">📅 月次予算</div>
-<div class="fs11 c-888 mb8">カテゴリー別予算（円）</div>
-<div id="budgetInputs" class="fc"></div>
-</div>
+<div class="mb16"><div class="fs13 fw7 mb8">お名前</div><input class="inp" id="setName" placeholder="お名前"></div>
+<div class="mb16"><div class="fs13 fw7 mb8">🎨 テーマ</div><div id="settingsThemes" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"></div></div>
+<div class="mb16"><div class="fs13 fw7 mb8">🔑 Gemini APIキー</div><div class="fs11 c-888 mb8">AI機能に必要（無料）<br>取得: <a href="https://aistudio.google.com" target="_blank" style="color:#7c3aed">aistudio.google.com</a></div><input class="inp" id="setApiKey" placeholder="AIza..." type="password"></div>
+<div class="mb16"><div class="fs13 fw7 mb8">📅 月次予算</div><div id="budgetInputs" class="fc"></div></div>
 <div class="fr" style="gap:8px">
 <button onclick="closeSettings()" style="flex:1;background:#f0f0f0;border:none;border-radius:12px;padding:12px;font-weight:700;cursor:pointer">キャンセル</button>
-<button onclick="saveSettings()" class="btn-primary" style="flex:1">保存</button>
-</div>
+<button onclick="saveSettings()" class="btn-primary" style="flex:1">保存</button></div>
 <div style="margin-top:16px;padding-top:16px;border-top:1px solid #f0f0f0">
-<button onclick="if(confirm('全データを削除してリセットします。よろしいですか？')){localStorage.clear();location.reload();}" style="width:100%;background:#ff6b6b22;color:#ff6b6b;border:none;border-radius:12px;padding:12px;font-weight:700;cursor:pointer">🗑️ 全データをリセット</button>
-</div>
-</div>
-</div>
+<button onclick="if(confirm('全データを削除してリセットします。よろしいですか？')){localStorage.clear();location.reload();}" style="width:100%;background:#ff6b6b22;color:#ff6b6b;border:none;border-radius:12px;padding:12px;font-weight:700;cursor:pointer">🗑️ 全データをリセット</button></div>
+</div></div>
 
 <script>
-// ========== 定数 ==========
 const CATEGORIES=["食費","日用品","交通費","外食","娯楽","通信費","サブスク","その他"];
 const METHODS=["現金","クレジットカード","QRコード決済","電子マネー"];
 const DEFAULT_BUDGETS={食費:30000,外食:15000,娯楽:10000,交通費:8000,通信費:5000,日用品:5000,サブスク:5000,その他:5000};
 const COLORS=["#FF6B6B","#4ECDC4","#45B7D1","#96CEB4","#FFEAA7","#DDA0DD","#98D8C8","#F7DC6F"];
 const ACC_COLORS=["#667eea","#FF6B6B","#4ECDC4","#f093fb","#FFEAA7","#96CEB4"];
 const THEMES={
-  purple:{label:"パープル",emoji:"💜",bg:"linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)",accent:"#7c3aed",headerColor:"#fff"},
-  aurora:{label:"オーロラ",emoji:"🌌",bg:"linear-gradient(180deg,#020818 0%,#0a1628 30%,#0d2340 60%,#0a1f35 100%)",accent:"#22d3ee",headerColor:"#a5f3fc"},
-  ocean:{label:"オーシャン",emoji:"🌊",bg:"linear-gradient(180deg,#0c4a6e 0%,#075985 20%,#0369a1 50%,#38bdf8 100%)",accent:"#0284c7",headerColor:"#fff"},
-  forest:{label:"フォレスト",emoji:"🌿",bg:"linear-gradient(135deg,#15803d 0%,#166534 60%,#14532d 100%)",accent:"#16a34a",headerColor:"#fff"},
-  night:{label:"ナイト",emoji:"🌙",bg:"linear-gradient(160deg,#0f0c29 0%,#1a1a4e 50%,#24243e 100%)",accent:"#818cf8",headerColor:"#e0d7ff"},
-  sakura:{label:"さくら",emoji:"🌸",bg:"linear-gradient(135deg,#fce7f3 0%,#fbcfe8 40%,#f9a8d4 100%)",accent:"#db2777",headerColor:"#9d174d"}
+  purple:{label:"パープル",emoji:"💜",bg:"linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)",accent:"#7c3aed",hc:"#fff"},
+  aurora:{label:"オーロラ",emoji:"🌌",bg:"linear-gradient(180deg,#020818 0%,#0a1628 30%,#0d2340 60%,#0a1f35 100%)",accent:"#22d3ee",hc:"#a5f3fc"},
+  ocean:{label:"オーシャン",emoji:"🌊",bg:"linear-gradient(180deg,#0c4a6e 0%,#075985 20%,#0369a1 50%,#38bdf8 100%)",accent:"#0284c7",hc:"#fff"},
+  forest:{label:"フォレスト",emoji:"🌿",bg:"linear-gradient(135deg,#15803d 0%,#166534 60%,#14532d 100%)",accent:"#16a34a",hc:"#fff"},
+  night:{label:"ナイト",emoji:"🌙",bg:"linear-gradient(160deg,#0f0c29 0%,#1a1a4e 50%,#24243e 100%)",accent:"#818cf8",hc:"#e0d7ff"},
+  sakura:{label:"さくら",emoji:"🌸",bg:"linear-gradient(135deg,#fce7f3 0%,#fbcfe8 40%,#f9a8d4 100%)",accent:"#db2777",hc:"#9d174d"}
 };
 const CHARS=[{i:"🐱",n:"ネコ",d:"語尾に「にゃ」をつける親しみやすい"},{i:"🦊",n:"キツネ",d:"クールで賢い論理的"},{i:"🐼",n:"パンダ",d:"ほのぼのマイペース"},{i:"🐻",n:"クマ",d:"おおらか兄貴分"},{i:"🐨",n:"コアラ",d:"のんびり鋭い"},{i:"🦋",n:"チョウ",d:"詩的で前向き"},{i:"🐧",n:"ペンギン",d:"敬語で丁寧"},{i:"🦄",n:"ユニコーン",d:"テンション高め"},{i:"🐸",n:"カエル",d:"語尾に「ケロ」正直"},{i:"🤖",n:"ロボット",d:"データ重視分析"}];
 
-// ========== 状態管理 ==========
-const STORE={
-  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch{return d;}},
-  set(k,v){localStorage.setItem(k,JSON.stringify(v));}
-};
-let state={
-  userName:STORE.get("k_userName",""),
-  theme:STORE.get("k_theme","purple"),
-  apiKey:STORE.get("k_apiKey",""),
-  aiChar:STORE.get("k_aiChar","🐱"),
-  accounts:STORE.get("k_accounts",[]),
-  expenses:STORE.get("k_expenses",[]),
-  subscriptions:STORE.get("k_subscriptions",[]),
-  budgets:STORE.get("k_budgets",DEFAULT_BUDGETS)
-};
-function saveState(){
-  ["userName","theme","apiKey","aiChar","accounts","expenses","subscriptions","budgets"].forEach(k=>STORE.set("k_"+k,state[k]));
-}
+const S={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch{return d;}},set(k,v){localStorage.setItem(k,JSON.stringify(v));}};
+let st={userName:S.get("k_un",""),theme:S.get("k_th","purple"),apiKey:S.get("k_ak",""),aiChar:S.get("k_ac","🐱"),accounts:S.get("k_accs",[]),expenses:S.get("k_exps",[]),subscriptions:S.get("k_subs",[]),budgets:S.get("k_buds",DEFAULT_BUDGETS)};
+function save(){["un","th","ak","ac","accs","exps","subs","buds"].forEach((k,i)=>S.set("k_"+k,[st.userName,st.theme,st.apiKey,st.aiChar,st.accounts,st.expenses,st.subscriptions,st.budgets][i]));}
 
-let calYear,calMonth,selectedDay=null,satisfaction=3,tempTheme="purple";
-let _imgItems=[];
-const now=new Date();
-calYear=now.getFullYear();calMonth=now.getMonth();
+let calY,calM,selDay=null,sat=3,tmpTh="purple",_imgItems=[];
+const now=new Date();calY=now.getFullYear();calM=now.getMonth();
 const yen=n=>`¥${Number(n).toLocaleString()}`;
 
-// ========== 初期化 ==========
 function init(){
-  if(!state.accounts.length){showSetup();return;}
+  if(!st.accounts.length){showSetup();return;}
   applyTheme();
-  document.getElementById("headerName").textContent=(state.userName||"あなた")+"さんの家計簿";
-  populateSelects();
-  renderAll();
-  initSat();
-  initChars();
-  initNav();
+  document.getElementById("headerName").textContent=(st.userName||"あなた")+"さんの家計簿";
+  popSel();renderAll();initSat();initChars();initNav();
 }
-
 function showSetup(){
   document.getElementById("mainContent").style.display="none";
   document.getElementById("bottomNav").style.display="none";
   document.getElementById("setupScreen").style.display="block";
-  tempTheme=state.theme;
-  renderSetupThemes();
+  tmpTh=st.theme;renderSetupTh();
 }
-function renderSetupThemes(){
-  document.getElementById("setupThemes").innerHTML=Object.entries(THEMES).map(([id,t])=>`<button class="theme-btn${tempTheme===id?" active":""}" style="background:${t.bg}" onclick="setSetupTheme('${id}')"><span style="font-size:24px">${t.emoji}</span><span style="font-size:11px">${t.label}</span>${tempTheme===id?'<span style="color:#fff">✓</span>':''}</button>`).join("");
+function renderSetupTh(){
+  document.getElementById("setupThemes").innerHTML=Object.entries(THEMES).map(([id,t])=>`<button class="theme-btn${tmpTh===id?" active":""}" style="background:${t.bg}" onclick="setSTh('${id}')"><span style="font-size:24px">${t.emoji}</span><span style="font-size:11px">${t.label}</span>${tmpTh===id?'<span style="color:#fff">✓</span>':''}</button>`).join("");
 }
-function setSetupTheme(id){tempTheme=id;state.theme=id;applyTheme();renderSetupThemes();}
+function setSTh(id){tmpTh=id;st.theme=id;applyTheme();renderSetupTh();}
 function finishSetup(){
-  const name=document.getElementById("setupName").value.trim();
-  const accName=document.getElementById("setupAccName").value.trim();
-  const accBal=document.getElementById("setupAccBal").value;
-  if(!accName||accBal===""){alert("口座名と残高を入力してください");return;}
-  state.userName=name||"あなた";
-  state.accounts=[{id:Date.now(),name:accName,balance:Number(accBal),initialBalance:Number(accBal),color:"#667eea"}];
-  saveState();
+  const n=document.getElementById("setupAccName").value.trim(),b=document.getElementById("setupAccBal").value;
+  if(!n||b===""){alert("口座名と残高を入力してください");return;}
+  st.userName=document.getElementById("setupName").value.trim()||"あなた";
+  st.accounts=[{id:Date.now(),name:n,balance:Number(b),initialBalance:Number(b),color:"#667eea"}];
+  save();
   document.getElementById("setupScreen").style.display="none";
   document.getElementById("mainContent").style.display="block";
   document.getElementById("bottomNav").style.display="flex";
   init();
 }
-
 function applyTheme(){
-  const t=THEMES[state.theme]||THEMES.purple;
+  const t=THEMES[st.theme]||THEMES.purple;
   document.body.style.background=t.bg;
-  document.querySelector(".header-sub").style.color=t.headerColor;
-  document.querySelector(".header-title").style.color=t.headerColor;
+  document.querySelector(".header-sub").style.color=t.hc;
+  document.querySelector(".header-title").style.color=t.hc;
   document.querySelectorAll(".nav-btn.active").forEach(b=>b.style.color=t.accent);
 }
-
-// ========== ナビ ==========
 function initNav(){
   document.querySelectorAll(".nav-btn").forEach(btn=>{
     btn.onclick=()=>{
       document.querySelectorAll(".nav-btn").forEach(b=>{b.classList.remove("active");b.style.color="#aaa";});
-      btn.classList.add("active");
-      btn.style.color=THEMES[state.theme].accent;
+      btn.classList.add("active");btn.style.color=THEMES[st.theme].accent;
       document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
       document.getElementById("tab-"+btn.dataset.tab).classList.add("active");
-      if(btn.dataset.tab==="calendar")renderCalendar();
+      if(btn.dataset.tab==="calendar")renderCal();
     };
   });
 }
-
-// ========== セレクト初期化 ==========
-function populateSelects(){
+function popSel(){
   document.getElementById("expCategory").innerHTML=CATEGORIES.map(c=>`<option>${c}</option>`).join("");
   document.getElementById("expMethod").innerHTML=METHODS.map(m=>`<option>${m}</option>`).join("");
-  const opts=state.accounts.map(a=>`<option value="${a.id}">${a.name}</option>`).join("");
-  ["expAccount","incAccount"].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='<option value="">口座を選択</option>'+opts;});
+  const o=st.accounts.map(a=>`<option value="${a.id}">${a.name}</option>`).join("");
+  ["expAccount","incAccount"].forEach(id=>{const e=document.getElementById(id);if(e)e.innerHTML='<option value="">口座を選択</option>'+o;});
   document.getElementById("expDate").value=new Date().toISOString().slice(0,10);
 }
 
-// ========== レンダリング ==========
-function renderAll(){renderHome();renderExpenses();renderAccounts();renderSubs();renderGraph();}
+function renderAll(){renderHome();renderExp();renderAcc();renderSubs();renderGraph();}
 
 function renderHome(){
-  const totalBal=state.accounts.reduce((s,a)=>s+a.balance,0);
-  const totalExp=state.expenses.reduce((s,e)=>s+e.amount,0);
-  const totalBud=Object.values(state.budgets).reduce((s,v)=>s+v,0);
-  const remain=totalBud-totalExp;
-  document.getElementById("totalBalance").textContent=yen(totalBal);
-  document.getElementById("totalExpenses").textContent=yen(totalExp);
-  document.getElementById("accountList").innerHTML=state.accounts.map(a=>`<div class="fr" style="padding:10px 12px;background:#f8f8ff;border-radius:12px;margin-bottom:4px"><div style="width:12px;height:12px;border-radius:50%;background:${a.color};flex-shrink:0"></div><div style="flex:1;font-size:14px;font-weight:600">${a.name}</div><div class="fw8 fs15">${yen(a.balance)}</div></div>`).join("");
-  const pct=totalBud>0?Math.min(100,(totalExp/totalBud)*100):0;
-  const isOver=remain<0;
-  const d=now.getDate(),dim=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
-  const pace=totalExp-(totalBud/dim)*d,rd=dim-d,daily=rd>0?remain/rd:0;
-  const isPace=pace>0&&!isOver;
-  document.getElementById("budgetStatusTitle").textContent=isOver?"🚨 予算オーバー":isPace?"⚠️ 予算ペース":"✅ 予算ステータス";
-  document.getElementById("budgetUsed").textContent=yen(totalExp);
-  document.getElementById("budgetTotal").textContent=yen(totalBud);
-  const bar=document.getElementById("budgetBar");
-  bar.style.width=pct+"%";bar.style.background=isOver?"#FF6B6B":isPace?"#FFA500":"#4ECDC4";
-  document.getElementById("remainBudget").textContent=yen(remain);
-  document.getElementById("remainBudget").style.color=isOver?"#FF6B6B":"#333";
-  document.getElementById("dailyBudget").textContent=yen(Math.round(daily));
-  document.getElementById("dailyBudget").style.color=daily<1000?"#FF6B6B":"#333";
+  const tb=st.accounts.reduce((s,a)=>s+a.balance,0);
+  const te=st.expenses.reduce((s,e)=>s+e.amount,0);
+  const tbu=Object.values(st.budgets).reduce((s,v)=>s+v,0);
+  const rem=tbu-te;
+  document.getElementById("totalBalance").textContent=yen(tb);
+  document.getElementById("totalExpenses").textContent=yen(te);
+  document.getElementById("accountList").innerHTML=st.accounts.map(a=>`<div class="fr" style="padding:10px 12px;background:#f8f8ff;border-radius:12px;margin-bottom:4px"><div style="width:12px;height:12px;border-radius:50%;background:${a.color};flex-shrink:0"></div><div style="flex:1;font-size:14px;font-weight:600">${a.name}</div><div class="fw8 fs15">${yen(a.balance)}</div></div>`).join("");
+  const pct=tbu>0?Math.min(100,(te/tbu)*100):0;
+  const isO=rem<0,d=now.getDate(),dim=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+  const pace=te-(tbu/dim)*d,rd=dim-d,daily=rd>0?rem/rd:0,isP=pace>0&&!isO;
+  document.getElementById("budgetStatusTitle").textContent=isO?"🚨 予算オーバー":isP?"⚠️ 予算ペース":"✅ 予算ステータス";
+  document.getElementById("budgetUsed").textContent=yen(te);document.getElementById("budgetTotal").textContent=yen(tbu);
+  const bar=document.getElementById("budgetBar");bar.style.width=pct+"%";bar.style.background=isO?"#FF6B6B":isP?"#FFA500":"#4ECDC4";
+  document.getElementById("remainBudget").textContent=yen(rem);document.getElementById("remainBudget").style.color=isO?"#FF6B6B":"#333";
+  document.getElementById("dailyBudget").textContent=yen(Math.round(daily));document.getElementById("dailyBudget").style.color=daily<1000?"#FF6B6B":"#333";
   document.getElementById("remainDays").textContent=`残り${rd}日`;
   const pw=document.getElementById("paceWarning");
-  if(isPace){pw.style.display="block";pw.style.background="rgba(255,165,0,0.1)";pw.style.color="#e67e22";pw.textContent=`📢 このペースだと月末に${yen(Math.round(pace*(dim/d)))}オーバーの可能性`;}
-  else if(isOver){pw.style.display="block";pw.style.background="rgba(255,107,107,0.1)";pw.style.color="#e74c3c";pw.textContent=`🚨 予算を${yen(Math.abs(remain))}オーバーしています！`;}
+  if(isP){pw.style.display="block";pw.style.background="rgba(255,165,0,0.1)";pw.style.color="#e67e22";pw.textContent=`📢 このペースだと月末に${yen(Math.round(pace*(dim/d)))}オーバーの可能性`;}
+  else if(isO){pw.style.display="block";pw.style.background="rgba(255,107,107,0.1)";pw.style.color="#e74c3c";pw.textContent=`🚨 予算を${yen(Math.abs(rem))}オーバーしています！`;}
   else pw.style.display="none";
-  // サブスク通知
-  const alerts=computeSubAlerts();
-  const sa=document.getElementById("subAlertSection");
-  if(alerts.length){sa.innerHTML=`<div class="card" style="background:rgba(240,147,251,0.08);border:1px solid rgba(240,147,251,0.3)"><div class="st">🔔 サブスク通知</div>${alerts.map(a=>renderSubAlert(a)).join("")}</div>`;}
-  else sa.innerHTML="";
-  // カテゴリー別
-  const byC={};CATEGORIES.forEach(c=>byC[c]=0);state.expenses.forEach(e=>byC[e.category]=(byC[e.category]||0)+e.amount);
+  const alerts=subAlerts();
+  document.getElementById("subAlertSection").innerHTML=alerts.length?`<div class="card" style="background:rgba(240,147,251,0.08);border:1px solid rgba(240,147,251,0.3)"><div class="st">🔔 サブスク通知</div>${alerts.map(renderSA).join("")}</div>`:"";
+  const byC={};CATEGORIES.forEach(c=>byC[c]=0);st.expenses.forEach(e=>byC[e.category]=(byC[e.category]||0)+e.amount);
   const cats=Object.entries(byC).filter(([,v])=>v>0);
   if(!cats.length){document.getElementById("catSummary").innerHTML='<div class="c-aaa fs13 tc" style="padding:20px 0">まだ支出がありません</div>';return;}
   const mx=Math.max(...cats.map(([,v])=>v));
   document.getElementById("catSummary").innerHTML=cats.map(([c,a],i)=>`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>${c}</span><span class="fw7">${yen(a)}</span></div><div class="progress-bar" style="height:6px"><div class="progress-fill" style="background:${COLORS[i%COLORS.length]};width:${(a/mx*100)}%"></div></div></div>`).join("");
 }
-function renderSubAlert(a){
+function subAlerts(){
+  const n=new Date(),a=[];
+  st.subscriptions.forEach(s=>{
+    if(s.nextDate){const d=Math.ceil((new Date(s.nextDate)-n)/864e5);if(d<=7&&d>=0)a.push({...s,diffDays:d,type:"soon"});else if(d<0)a.push({...s,diffDays:d,type:"overdue"});}
+    const r=s.lastUsed||s.addedDate;if(r){const m=(n.getFullYear()-new Date(r).getFullYear())*12+n.getMonth()-new Date(r).getMonth();if(m>=3)a.push({...s,unusedMonths:m,type:"unused"});}
+  });return a;
+}
+function renderSA(a){
   if(a.type==="soon")return`<div style="padding:8px 12px;background:rgba(78,205,196,0.1);border-radius:10px;margin-bottom:6px;font-size:12px;color:#0284c7">📅 <strong>${a.name}</strong> 更新${a.diffDays===0?"今日":`あと${a.diffDays}日`}</div>`;
   if(a.type==="overdue")return`<div style="padding:8px 12px;background:rgba(255,107,107,0.1);border-radius:10px;margin-bottom:6px;font-size:12px;color:#e74c3c">⚠️ <strong>${a.name}</strong> 更新日${Math.abs(a.diffDays)}日超過</div>`;
-  if(a.type==="unused")return`<div style="padding:8px 12px;background:rgba(255,165,0,0.1);border-radius:10px;margin-bottom:6px;font-size:12px;color:#e67e22">💤 <strong>${a.name}</strong> ${a.unusedMonths}ヶ月未使用</div>`;
+  return`<div style="padding:8px 12px;background:rgba(255,165,0,0.1);border-radius:10px;margin-bottom:6px;font-size:12px;color:#e67e22">💤 <strong>${a.name}</strong> ${a.unusedMonths}ヶ月未使用</div>`;
 }
-function computeSubAlerts(){
-  const now=new Date(),alerts=[];
-  state.subscriptions.forEach(sub=>{
-    if(sub.nextDate){const diff=Math.ceil((new Date(sub.nextDate)-now)/86400000);if(diff<=7&&diff>=0)alerts.push({...sub,diffDays:diff,type:"soon"});else if(diff<0)alerts.push({...sub,diffDays:diff,type:"overdue"});}
-    const ref=sub.lastUsed||sub.addedDate;
-    if(ref){const dm=(now.getFullYear()-new Date(ref).getFullYear())*12+now.getMonth()-new Date(ref).getMonth();if(dm>=3)alerts.push({...sub,unusedMonths:dm,type:"unused"});}
-  });
-  return alerts;
-}
-
-function renderExpenses(){
-  const hist=state.expenses.slice().sort((a,b)=>b.id-a.id).slice(0,20);
-  if(!hist.length){document.getElementById("expenseHistory").innerHTML='<div class="c-aaa fs13 tc" style="padding:20px 0">まだ支出がありません</div>';return;}
+function renderExp(){
+  const h=st.expenses.slice().sort((a,b)=>b.id-a.id).slice(0,20);
   const faces=["😞","😕","😐","🙂","😄"];
-  document.getElementById("expenseHistory").innerHTML=hist.map(e=>`<div class="expense-item"><div><div class="fs13 fw7">${e.category} <span style="font-weight:400;color:#999">• ${e.method}</span></div><div style="font-size:11px;color:#aaa">${e.date}${e.memo?` | ${e.memo}`:""}</div></div><div class="fr"><span style="font-size:16px">${faces[(e.satisfaction||3)-1]}</span><span class="fw8 fs15">${yen(e.amount)}</span><button class="btn-danger" onclick="deleteExpense(${e.id})">×</button></div></div>`).join("");
+  document.getElementById("expenseHistory").innerHTML=!h.length?'<div class="c-aaa fs13 tc" style="padding:20px 0">まだ支出がありません</div>':h.map(e=>`<div class="expense-item"><div><div class="fs13 fw7">${e.category} <span style="font-weight:400;color:#999">• ${e.method}</span></div><div style="font-size:11px;color:#aaa">${e.date}${e.memo?` | ${e.memo}`:""}</div></div><div class="fr"><span style="font-size:16px">${faces[(e.satisfaction||3)-1]}</span><span class="fw8 fs15">${yen(e.amount)}</span><button class="btn-danger" onclick="delExp(${e.id})">×</button></div></div>`).join("");
 }
-
-function renderAccounts(){
-  document.getElementById("accountCards").innerHTML=state.accounts.map(a=>`<div style="border-radius:16px;padding:16px;margin-bottom:10px;background:linear-gradient(135deg,${a.color}22,${a.color}11);border:1px solid ${a.color}44"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="fr"><div style="width:10px;height:10px;border-radius:50%;background:${a.color}"></div><div class="fw7 fs15">${a.name}</div></div><div style="font-size:22px;font-weight:800;margin-top:6px">${yen(a.balance)}</div></div>${state.accounts.length>1?`<button class="btn-danger" onclick="deleteAcc(${a.id})">削除</button>`:""}</div></div>`).join("");
+function renderAcc(){
+  document.getElementById("accountCards").innerHTML=st.accounts.map(a=>`<div style="border-radius:16px;padding:16px;margin-bottom:10px;background:linear-gradient(135deg,${a.color}22,${a.color}11);border:1px solid ${a.color}44"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="fr"><div style="width:10px;height:10px;border-radius:50%;background:${a.color}"></div><div class="fw7 fs15">${a.name}</div></div><div style="font-size:22px;font-weight:800;margin-top:6px">${yen(a.balance)}</div></div>${st.accounts.length>1?`<button class="btn-danger" onclick="delAcc(${a.id})">削除</button>`:""}</div></div>`).join("");
 }
-
 function renderSubs(){
-  const total=state.subscriptions.reduce((s,sub)=>s+sub.amount,0);
-  document.getElementById("subTotal").textContent=yen(total);
-  document.getElementById("subYearly").textContent=`年間 ${yen(total*12)}`;
-  const alerts=computeSubAlerts();
-  const sa=document.getElementById("subAlerts");
-  if(alerts.length){sa.innerHTML=`<div class="card" style="background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.2)"><div class="st">🔔 通知</div>${alerts.map(a=>renderSubAlert(a)).join("")}</div>`;}
-  else sa.innerHTML="";
-  if(!state.subscriptions.length){document.getElementById("subList").innerHTML='<div class="c-aaa fs13 tc" style="padding:20px 0">まだサブスクがありません</div>';return;}
-  document.getElementById("subList").innerHTML=state.subscriptions.map(s=>`<div style="padding:12px 0;border-bottom:1px solid #f0f0f0"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="fw7 fs15">${s.name}</div>${s.nextDate?`<div style="font-size:11px;color:#aaa">次回: ${s.nextDate}</div>`:""}${s.lastUsed?`<div style="font-size:11px;color:#4ECDC4">最終: ${s.lastUsed}</div>`:'<div style="font-size:11px;color:#e67e22">未使用</div>'}</div><span class="fw8" style="color:#764ba2;font-size:14px">${yen(s.amount)}/月</span></div><div class="fr" style="margin-top:8px"><button class="btn-green" onclick="markUsed(${s.id})">使用済み ✓</button><button class="btn-danger" onclick="deleteSub(${s.id})">削除</button></div></div>`).join("");
+  const t=st.subscriptions.reduce((s,x)=>s+x.amount,0);
+  document.getElementById("subTotal").textContent=yen(t);document.getElementById("subYearly").textContent=`年間 ${yen(t*12)}`;
+  const al=subAlerts();document.getElementById("subAlerts").innerHTML=al.length?`<div class="card" style="background:rgba(255,107,107,0.06);border:1px solid rgba(255,107,107,0.2)"><div class="st">🔔 通知</div>${al.map(renderSA).join("")}</div>`:"";
+  document.getElementById("subList").innerHTML=!st.subscriptions.length?'<div class="c-aaa fs13 tc" style="padding:20px 0">まだサブスクがありません</div>':st.subscriptions.map(s=>`<div style="padding:12px 0;border-bottom:1px solid #f0f0f0"><div style="display:flex;justify-content:space-between;align-items:center"><div><div class="fw7 fs15">${s.name}</div>${s.nextDate?`<div style="font-size:11px;color:#aaa">次回: ${s.nextDate}</div>`:""}${s.lastUsed?`<div style="font-size:11px;color:#4ECDC4">最終: ${s.lastUsed}</div>`:'<div style="font-size:11px;color:#e67e22">未使用</div>'}</div><span class="fw8" style="color:#764ba2;font-size:14px">${yen(s.amount)}/月</span></div><div class="fr" style="margin-top:8px"><button class="btn-green" onclick="markUsed(${s.id})">使用済み ✓</button><button class="btn-danger" onclick="delSub(${s.id})">削除</button></div></div>`).join("");
 }
-
 function renderGraph(){
-  const byC={};CATEGORIES.forEach(c=>byC[c]=0);state.expenses.forEach(e=>byC[e.category]=(byC[e.category]||0)+e.amount);
+  const byC={};CATEGORIES.forEach(c=>byC[c]=0);st.expenses.forEach(e=>byC[e.category]=(byC[e.category]||0)+e.amount);
   const cats=Object.entries(byC).filter(([,v])=>v>0);
-  if(!cats.length){document.getElementById("budgetProgress").innerHTML='<div class="c-aaa fs13 tc" style="padding:20px 0">まだ支出がありません</div>';}
-  else{document.getElementById("budgetProgress").innerHTML=cats.map(([c,a],i)=>{const b=state.budgets[c]||10000,p=Math.min(100,(a/b)*100);return`<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span class="fw7">${c}</span><span>${yen(a)} / ${yen(b)}</span></div><div class="progress-bar" style="height:14px"><div class="progress-fill" style="background:${p>80?"#FF6B6B":COLORS[i%COLORS.length]};width:${p}%"></div></div></div>`;}).join("");}
-  const byM={};METHODS.forEach(m=>byM[m]=0);state.expenses.forEach(e=>byM[e.method]=(byM[e.method]||0)+e.amount);
-  const mets=Object.entries(byM).filter(([,v])=>v>0);
+  document.getElementById("budgetProgress").innerHTML=!cats.length?'<div class="c-aaa fs13 tc" style="padding:20px 0">まだ支出がありません</div>':cats.map(([c,a],i)=>{const b=st.budgets[c]||10000,p=Math.min(100,(a/b)*100);return`<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px"><span class="fw7">${c}</span><span>${yen(a)} / ${yen(b)}</span></div><div class="progress-bar" style="height:14px"><div class="progress-fill" style="background:${p>80?"#FF6B6B":COLORS[i%COLORS.length]};width:${p}%"></div></div></div>`;}).join("");
+  const byM={};METHODS.forEach(m=>byM[m]=0);st.expenses.forEach(e=>byM[e.method]=(byM[e.method]||0)+e.amount);
   const icons={"現金":"💵","クレジットカード":"💳","QRコード決済":"📱","電子マネー":"💾"};
+  const mets=Object.entries(byM).filter(([,v])=>v>0);
   document.getElementById("methodSummary").innerHTML=!mets.length?'<div class="c-aaa fs13 tc" style="padding:20px 0">まだ支出がありません</div>':mets.map(([m,a],i)=>`<div class="fr" style="padding:10px;background:${COLORS[i]}22;border-radius:12px;margin-bottom:10px"><span style="font-size:20px">${icons[m]||"💰"}</span><span style="flex:1;font-weight:600;font-size:14px">${m}</span><span class="fw8">${yen(a)}</span></div>`).join("");
 }
 
-// ========== カレンダー ==========
-function renderCalendar(){
-  document.getElementById("calTitle").textContent=`${calYear}年${calMonth+1}月`;
-  const dim=new Date(calYear,calMonth+1,0).getDate();
-  const fdow=new Date(calYear,calMonth,1).getDay();
-  const byDay={};
-  state.expenses.forEach(e=>{const d=new Date(e.date);if(d.getFullYear()===calYear&&d.getMonth()===calMonth){const dy=d.getDate();if(!byDay[dy])byDay[dy]=[];byDay[dy].push(e);}});
-  const monthTotal=Object.values(byDay).flat().reduce((s,e)=>s+e.amount,0);
-  document.getElementById("calMonthTotal").textContent=yen(monthTotal);
-  const maxAmt=Math.max(1,...Object.values(byDay).map(arr=>arr.reduce((s,e)=>s+e.amount,0)));
-  const wk=["日","月","火","水","木","金","土"];
-  let html=wk.map((w,i)=>`<div class="cal-header" style="color:${i===0?"#FF6B6B":i===6?"#45B7D1":"#888"}">${w}</div>`).join("");
-  for(let i=0;i<fdow;i++)html+='<div></div>';
-  const today=new Date();
+// カレンダー
+function renderCal(){
+  document.getElementById("calTitle").textContent=`${calY}年${calM+1}月`;
+  const dim=new Date(calY,calM+1,0).getDate(),fdow=new Date(calY,calM,1).getDay();
+  const byD={};st.expenses.forEach(e=>{const d=new Date(e.date);if(d.getFullYear()===calY&&d.getMonth()===calM){const dy=d.getDate();if(!byD[dy])byD[dy]=[];byD[dy].push(e);}});
+  const mt=Object.values(byD).flat().reduce((s,e)=>s+e.amount,0);
+  document.getElementById("calMonthTotal").textContent=yen(mt);
+  const mx=Math.max(1,...Object.values(byD).map(a=>a.reduce((s,e)=>s+e.amount,0)));
+  const wk=["日","月","火","水","木","金","土"],td=new Date();
+  let h=wk.map((w,i)=>`<div class="cal-header" style="color:${i===0?"#FF6B6B":i===6?"#45B7D1":"#888"}">${w}</div>`).join("");
+  for(let i=0;i<fdow;i++)h+='<div></div>';
   for(let d=1;d<=dim;d++){
-    const exps=byDay[d],total=exps?exps.reduce((s,e)=>s+e.amount,0):0;
-    const intensity=total>0?Math.max(0.15,Math.min(1,total/maxAmt)):0;
-    const isToday=today.getDate()===d&&today.getMonth()===calMonth&&today.getFullYear()===calYear;
-    const isSel=selectedDay===d;
-    const dow=(fdow+d-1)%7;
-    const dc=dow===0?"#FF6B6B":dow===6?"#45B7D1":"#333";
-    html+=`<button class="cal-day${isToday?" today":""}${isSel?" selected":""}" onclick="selectDay(${d})" style="background:${total>0?`rgba(255,107,107,${intensity*0.6})`:"#fff"}"><span style="color:${dc}">${d}</span>${total>0?`<span class="cal-amount">${total>=10000?Math.round(total/1000)+"k":total}</span>`:""}</button>`;
+    const ex=byD[d],tot=ex?ex.reduce((s,e)=>s+e.amount,0):0;
+    const int=tot>0?Math.max(0.15,Math.min(1,tot/mx)):0;
+    const isT=td.getDate()===d&&td.getMonth()===calM&&td.getFullYear()===calY,isS=selDay===d;
+    const dw=(fdow+d-1)%7,dc=dw===0?"#FF6B6B":dw===6?"#45B7D1":"#333";
+    h+=`<button class="cal-day${isT?" today":""}${isS?" selected":""}" onclick="selD(${d})" style="background:${tot>0?`rgba(255,107,107,${int*0.6})`:"#fff"}"><span style="color:${dc}">${d}</span>${tot>0?`<span class="cal-amount">${tot>=10000?Math.round(tot/1000)+"k":tot}</span>`:""}</button>`;
   }
-  document.getElementById("calGrid").innerHTML=html;
+  document.getElementById("calGrid").innerHTML=h;
   const det=document.getElementById("calDetail");
-  if(selectedDay){
-    const exps=byDay[selectedDay]||[];
-    det.style.display="block";
-    document.getElementById("calDetailTitle").textContent=`📋 ${calMonth+1}/${selectedDay}の支出`;
-    if(!exps.length){document.getElementById("calDetailContent").innerHTML='<div class="c-aaa fs13 tc" style="padding:16px 0">この日の支出はありません</div>';}
-    else{
-      const faces=["😞","😕","😐","🙂","😄"];
-      const dayTotal=exps.reduce((s,e)=>s+e.amount,0);
-      document.getElementById("calDetailContent").innerHTML=`<div class="tc mb12"><span style="font-size:24px;font-weight:800;color:#764ba2">${yen(dayTotal)}</span></div>`+exps.map(e=>`<div class="expense-item"><div><div class="fs13 fw7">${e.category} <span style="font-weight:400;color:#999">• ${e.method}</span></div>${e.memo?`<div style="font-size:11px;color:#aaa">${e.memo}</div>`:""}</div><div class="fr"><span style="font-size:14px">${faces[(e.satisfaction||3)-1]}</span><span class="fw8 fs15">${yen(e.amount)}</span></div></div>`).join("");
-    }
-  }else{det.style.display="none";}
+  if(selDay){
+    const ex=byD[selDay]||[];det.style.display="block";
+    document.getElementById("calDetailTitle").textContent=`📋 ${calM+1}/${selDay}の支出`;
+    const faces=["😞","😕","😐","🙂","😄"];
+    document.getElementById("calDetailContent").innerHTML=!ex.length?'<div class="c-aaa fs13 tc" style="padding:16px 0">この日の支出はありません</div>':`<div class="tc mb12"><span style="font-size:24px;font-weight:800;color:#764ba2">${yen(ex.reduce((s,e)=>s+e.amount,0))}</span></div>`+ex.map(e=>`<div class="expense-item"><div><div class="fs13 fw7">${e.category} <span style="font-weight:400;color:#999">• ${e.method}</span></div>${e.memo?`<div style="font-size:11px;color:#aaa">${e.memo}</div>`:""}</div><div class="fr"><span style="font-size:14px">${faces[(e.satisfaction||3)-1]}</span><span class="fw8 fs15">${yen(e.amount)}</span></div></div>`).join("");
+  }else det.style.display="none";
 }
-function selectDay(d){selectedDay=selectedDay===d?null:d;renderCalendar();}
-function prevMonth(){calMonth--;if(calMonth<0){calMonth=11;calYear--;}selectedDay=null;renderCalendar();}
-function nextMonth(){calMonth++;if(calMonth>11){calMonth=0;calYear++;}selectedDay=null;renderCalendar();}
+function selD(d){selDay=selDay===d?null:d;renderCal();}
+function prevMonth(){calM--;if(calM<0){calM=11;calY--;}selDay=null;renderCal();}
+function nextMonth(){calM++;if(calM>11){calM=0;calY++;}selDay=null;renderCal();}
 
-// ========== 満足度・キャラ ==========
+// 満足度・キャラ
 function initSat(){
-  const faces=["😞","😕","😐","🙂","😄"];
-  document.getElementById("satBtns").innerHTML=faces.map((f,i)=>`<button class="sat-btn${satisfaction===i+1?" active":""}${satisfaction>=i+1?" on":""}" onclick="setSat(${i+1})">${f}</button>`).join("");
+  const f=["😞","😕","😐","🙂","😄"];
+  document.getElementById("satBtns").innerHTML=f.map((x,i)=>`<button class="sat-btn${sat===i+1?" active":""}${sat>=i+1?" on":""}" onclick="setSat(${i+1})">${x}</button>`).join("");
 }
-function setSat(n){satisfaction=n;initSat();}
+function setSat(n){sat=n;initSat();}
 function initChars(){
-  document.getElementById("charBtns").innerHTML=CHARS.map(c=>`<button class="char-btn${state.aiChar===c.i?" active":""}" onclick="setChar('${c.i}')">${c.i}<span class="char-name">${c.n}</span></button>`).join("");
-  document.getElementById("aiBtn").textContent=state.aiChar+" AIに分析してもらう";
+  document.getElementById("charBtns").innerHTML=CHARS.map(c=>`<button class="char-btn${st.aiChar===c.i?" active":""}" onclick="setCh('${c.i}')">${c.i}<span class="char-name">${c.n}</span></button>`).join("");
+  document.getElementById("aiBtn").textContent=st.aiChar+" AIに分析してもらう";
 }
-function setChar(c){state.aiChar=c;saveState();initChars();}
+function setCh(c){st.aiChar=c;save();initChars();}
 
-// ========== 操作 ==========
+// 操作
 function submitExpense(){
-  const accId=document.getElementById("expAccount").value;
-  const date=document.getElementById("expDate").value;
-  const amount=document.getElementById("expAmount").value;
-  if(!accId||!date||!amount){alert("口座・日付・金額を入力してください");return;}
-  const amt=Number(amount);
-  state.expenses.push({id:Date.now(),accountId:Number(accId),date,amount:amt,category:document.getElementById("expCategory").value,method:document.getElementById("expMethod").value,memo:document.getElementById("expMemo").value,satisfaction});
-  const acc=state.accounts.find(a=>a.id===Number(accId));if(acc)acc.balance-=amt;
-  saveState();
-  document.getElementById("expAmount").value="";document.getElementById("expMemo").value="";
-  renderAll();
+  const ai=document.getElementById("expAccount").value,dt=document.getElementById("expDate").value,am=document.getElementById("expAmount").value;
+  if(!ai||!dt||!am){alert("口座・日付・金額を入力してください");return;}
+  const amt=Number(am);
+  st.expenses.push({id:Date.now(),accountId:Number(ai),date:dt,amount:amt,category:document.getElementById("expCategory").value,method:document.getElementById("expMethod").value,memo:document.getElementById("expMemo").value,satisfaction:sat});
+  const ac=st.accounts.find(a=>a.id===Number(ai));if(ac)ac.balance-=amt;
+  save();document.getElementById("expAmount").value="";document.getElementById("expMemo").value="";renderAll();
 }
-function deleteExpense(id){
+function delExp(id){
   if(!confirm("この支出を削除しますか？"))return;
-  const e=state.expenses.find(x=>x.id===id);
-  if(e){const acc=state.accounts.find(a=>a.id===e.accountId);if(acc)acc.balance+=e.amount;}
-  state.expenses=state.expenses.filter(x=>x.id!==id);
-  saveState();renderAll();
+  const e=st.expenses.find(x=>x.id===id);if(e){const a=st.accounts.find(x=>x.id===e.accountId);if(a)a.balance+=e.amount;}
+  st.expenses=st.expenses.filter(x=>x.id!==id);save();renderAll();
 }
 function submitIncome(){
-  const accId=document.getElementById("incAccount").value;
-  const amount=document.getElementById("incAmount").value;
-  if(!accId||!amount){alert("口座と金額を入力");return;}
-  const acc=state.accounts.find(a=>a.id===Number(accId));if(acc)acc.balance+=Number(amount);
-  saveState();
-  document.getElementById("incAmount").value="";document.getElementById("incMemo").value="";
-  renderAll();
+  const ai=document.getElementById("incAccount").value,am=document.getElementById("incAmount").value;
+  if(!ai||!am){alert("口座と金額を入力");return;}
+  const a=st.accounts.find(x=>x.id===Number(ai));if(a)a.balance+=Number(am);
+  save();document.getElementById("incAmount").value="";document.getElementById("incMemo").value="";renderAll();
 }
 function submitNewAccount(){
-  const name=document.getElementById("newAccName").value;
-  const bal=document.getElementById("newAccBal").value;
-  if(!name||bal===""){alert("口座名と残高を入力");return;}
-  const color=ACC_COLORS[state.accounts.length%ACC_COLORS.length];
-  state.accounts.push({id:Date.now(),name,balance:Number(bal),initialBalance:Number(bal),color});
-  saveState();
-  document.getElementById("newAccName").value="";document.getElementById("newAccBal").value="";
-  populateSelects();renderAll();
+  const n=document.getElementById("newAccName").value,b=document.getElementById("newAccBal").value;
+  if(!n||b===""){alert("口座名と残高を入力");return;}
+  st.accounts.push({id:Date.now(),name:n,balance:Number(b),initialBalance:Number(b),color:ACC_COLORS[st.accounts.length%ACC_COLORS.length]});
+  save();document.getElementById("newAccName").value="";document.getElementById("newAccBal").value="";popSel();renderAll();
 }
-function deleteAcc(id){
-  if(state.accounts.length===1){alert("口座は1つ以上必要です");return;}
-  if(!confirm("この口座と関連する支出を削除しますか？"))return;
-  state.accounts=state.accounts.filter(a=>a.id!==id);
-  state.expenses=state.expenses.filter(e=>e.accountId!==id);
-  saveState();populateSelects();renderAll();
+function delAcc(id){
+  if(st.accounts.length===1){alert("口座は1つ以上必要です");return;}
+  if(!confirm("この口座を削除しますか？"))return;
+  st.accounts=st.accounts.filter(a=>a.id!==id);st.expenses=st.expenses.filter(e=>e.accountId!==id);save();popSel();renderAll();
 }
 function submitSub(){
-  const name=document.getElementById("subName").value;
-  const amount=document.getElementById("subAmount").value;
-  if(!name||!amount){alert("サービス名と月額を入力");return;}
-  state.subscriptions.push({id:Date.now(),name,amount:Number(amount),nextDate:document.getElementById("subNext").value,lastUsed:document.getElementById("subLastUsed").value,addedDate:new Date().toISOString().slice(0,10)});
-  saveState();
-  document.getElementById("subName").value="";document.getElementById("subAmount").value="";
-  document.getElementById("subNext").value="";document.getElementById("subLastUsed").value="";
-  renderSubs();renderHome();
+  const n=document.getElementById("subName").value,a=document.getElementById("subAmount").value;
+  if(!n||!a){alert("サービス名と月額を入力");return;}
+  st.subscriptions.push({id:Date.now(),name:n,amount:Number(a),nextDate:document.getElementById("subNext").value,lastUsed:document.getElementById("subLastUsed").value,addedDate:new Date().toISOString().slice(0,10)});
+  save();document.getElementById("subName").value="";document.getElementById("subAmount").value="";document.getElementById("subNext").value="";document.getElementById("subLastUsed").value="";renderSubs();renderHome();
 }
-function deleteSub(id){state.subscriptions=state.subscriptions.filter(s=>s.id!==id);saveState();renderSubs();renderHome();}
-function markUsed(id){const s=state.subscriptions.find(x=>x.id===id);if(s)s.lastUsed=new Date().toISOString().slice(0,10);saveState();renderSubs();renderHome();}
+function delSub(id){st.subscriptions=st.subscriptions.filter(s=>s.id!==id);save();renderSubs();renderHome();}
+function markUsed(id){const s=st.subscriptions.find(x=>x.id===id);if(s)s.lastUsed=new Date().toISOString().slice(0,10);save();renderSubs();renderHome();}
 
-// ========== 設定モーダル ==========
+// 設定
 function openSettings(){
   document.getElementById("settingsModal").style.display="flex";
-  document.getElementById("setName").value=state.userName;
-  document.getElementById("setApiKey").value=state.apiKey;
-  tempTheme=state.theme;
-  document.getElementById("settingsThemes").innerHTML=Object.entries(THEMES).map(([id,t])=>`<button class="theme-btn${tempTheme===id?" active":""}" style="background:${t.bg}" onclick="pickTheme('${id}')"><span style="font-size:24px">${t.emoji}</span><span style="font-size:11px">${t.label}</span></button>`).join("");
-  document.getElementById("budgetInputs").innerHTML=CATEGORIES.map(c=>`<div class="fr"><span style="width:70px;font-size:12px;font-weight:600">${c}</span><input type="number" class="inp" id="budget-${c}" value="${state.budgets[c]||0}" style="flex:1"></div>`).join("");
+  document.getElementById("setName").value=st.userName;
+  document.getElementById("setApiKey").value=st.apiKey;
+  tmpTh=st.theme;
+  document.getElementById("settingsThemes").innerHTML=Object.entries(THEMES).map(([id,t])=>`<button class="theme-btn${tmpTh===id?" active":""}" style="background:${t.bg}" onclick="pickTh('${id}',this)"><span style="font-size:24px">${t.emoji}</span><span style="font-size:11px">${t.label}</span></button>`).join("");
+  document.getElementById("budgetInputs").innerHTML=CATEGORIES.map(c=>`<div class="fr"><span style="width:70px;font-size:12px;font-weight:600">${c}</span><input type="number" class="inp" id="budget-${c}" value="${st.budgets[c]||0}" style="flex:1"></div>`).join("");
 }
-function pickTheme(id){tempTheme=id;document.querySelectorAll("#settingsThemes .theme-btn").forEach(b=>b.classList.remove("active"));event.currentTarget.classList.add("active");}
+function pickTh(id,el){tmpTh=id;document.querySelectorAll("#settingsThemes .theme-btn").forEach(b=>b.classList.remove("active"));el.classList.add("active");}
 function closeSettings(){document.getElementById("settingsModal").style.display="none";}
 function saveSettings(){
-  state.userName=document.getElementById("setName").value.trim()||"あなた";
-  state.apiKey=document.getElementById("setApiKey").value.trim();
-  state.theme=tempTheme;
-  CATEGORIES.forEach(c=>{const v=document.getElementById("budget-"+c).value;state.budgets[c]=Number(v)||0;});
-  saveState();
-  document.getElementById("headerName").textContent=state.userName+"さんの家計簿";
+  st.userName=document.getElementById("setName").value.trim()||"あなた";
+  st.apiKey=document.getElementById("setApiKey").value.trim();
+  st.theme=tmpTh;
+  CATEGORIES.forEach(c=>{st.budgets[c]=Number(document.getElementById("budget-"+c).value)||0;});
+  save();document.getElementById("headerName").textContent=st.userName+"さんの家計簿";
   applyTheme();renderAll();closeSettings();
 }
 
-// ========== Gemini API ==========
+// Gemini API
 async function callGemini(parts){
-  if(!state.apiKey){alert("設定画面でGemini APIキーを入力してください\n（無料取得: aistudio.google.com）");return null;}
+  if(!st.apiKey){alert("設定画面（⚙️）でGemini APIキーを入力してください\n（無料取得: aistudio.google.com）");return null;}
   try{
-    const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${state.apiKey}`,{
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${st.apiKey}`,{
       method:"POST",headers:{"Content-Type":"application/json"},
       body:JSON.stringify({contents:[{parts}]})
     });
-    const data=await res.json();
-    if(data.error){alert("APIエラー: "+data.error.message);return null;}
-    return data.candidates?.[0]?.content?.parts?.[0]?.text||"";
+    const d=await r.json();
+    if(d.error){alert("APIエラー: "+d.error.message);return null;}
+    return d.candidates?.[0]?.content?.parts?.[0]?.text||"";
   }catch(e){alert("通信エラー: "+e.message);return null;}
 }
 
 async function fetchAI(){
-  if(!state.apiKey){alert("設定画面でGemini APIキーを入力してください");return;}
-  const btn=document.getElementById("aiBtn");
-  btn.textContent="分析中...";btn.disabled=true;
-  const byC={};CATEGORIES.forEach(c=>byC[c]=0);state.expenses.forEach(e=>byC[e.category]=(byC[e.category]||0)+e.amount);
-  const summary=Object.entries(byC).filter(([,v])=>v>0).map(([k,v])=>`${k}: ${yen(v)}`).join(", ");
-  const totalExp=state.expenses.reduce((s,e)=>s+e.amount,0);
-  const totalBal=state.accounts.reduce((s,a)=>s+a.balance,0);
-  const totalBud=Object.values(state.budgets).reduce((s,v)=>s+v,0);
-  const char=CHARS.find(c=>c.i===state.aiChar)||CHARS[0];
-  const prompt=`あなたは家計簿AIアドバイザーです。以下のキャラクターとして話してください：\n${char.n}：${char.d}\n\n今月の支出データ:\n${summary||"データなし"}\n合計支出: ${yen(totalExp)}\n総残高: ${yen(totalBal)}\n残り予算: ${yen(totalBud-totalExp)}\n\n具体的で優しいアドバイスを3点、絵文字付きで箇条書きでお願いします。`;
-  const txt=await callGemini([{text:prompt}]);
-  if(txt){
-    document.getElementById("aiResult").style.display="block";
-    document.getElementById("aiResultTitle").textContent=state.aiChar+" AIからのアドバイス";
-    document.getElementById("aiResultText").textContent=txt;
-  }
-  btn.textContent=state.aiChar+" AIに分析してもらう";btn.disabled=false;
+  if(!st.apiKey){alert("設定画面でGemini APIキーを入力してください");return;}
+  const btn=document.getElementById("aiBtn");btn.textContent="分析中...";btn.disabled=true;
+  const byC={};CATEGORIES.forEach(c=>byC[c]=0);st.expenses.forEach(e=>byC[e.category]=(byC[e.category]||0)+e.amount);
+  const sum=Object.entries(byC).filter(([,v])=>v>0).map(([k,v])=>`${k}: ${yen(v)}`).join(", ");
+  const te=st.expenses.reduce((s,e)=>s+e.amount,0),tb=st.accounts.reduce((s,a)=>s+a.balance,0),tbu=Object.values(st.budgets).reduce((s,v)=>s+v,0);
+  const ch=CHARS.find(c=>c.i===st.aiChar)||CHARS[0];
+  const txt=await callGemini([{text:`家計簿AIアドバイザーとして話してください。キャラクター：${ch.n}（${ch.d}）\n\n支出: ${sum||"なし"}\n合計: ${yen(te)}\n残高: ${yen(tb)}\n残り予算: ${yen(tbu-te)}\n\n具体的で優しいアドバイスを3点、絵文字付き箇条書きで。`}]);
+  if(txt){document.getElementById("aiResult").style.display="block";document.getElementById("aiResultTitle").textContent=st.aiChar+" AIからのアドバイス";document.getElementById("aiResultText").textContent=txt;}
+  btn.textContent=st.aiChar+" AIに分析してもらう";btn.disabled=false;
 }
 
+// 画像認識
 async function handleImageUpload(input){
   const file=input.files[0];if(!file)return;
-  if(!state.apiKey){alert("設定画面でGemini APIキーを入力してください");input.value="";return;}
-  const btn=document.getElementById("imgBtn");
-  btn.textContent="認識中...";btn.disabled=true;
+  if(!st.apiKey){alert("設定画面でGemini APIキーを入力してください");input.value="";return;}
+  const btn=document.getElementById("imgBtn");btn.textContent="認識中...";btn.disabled=true;
   const reader=new FileReader();
-  reader.onload=async e=>{
+  reader.onload=async ev=>{
     document.getElementById("imgPreview").style.display="block";
-    document.getElementById("imgPreviewImg").src=e.target.result;
-    const base64=e.target.result.split(",")[1];
-    const mimeType=file.type||"image/jpeg";
-    const prompt=`この画像に写っている商品やレシートを分析してください。\n\nカテゴリー一覧: ${CATEGORIES.join(", ")}\n\n以下のJSON形式のみで回答してください（他のテキストは不要）:\n{"items": [{"name": "商品名", "category": "カテゴリー名", "estimated_price": 推定価格（数値のみ、不明なら0）}], "description": "画像の説明を一行で"}`;
-    const txt=await callGemini([{inline_data:{mime_type:mimeType,data:base64}},{text:prompt}]);
+    document.getElementById("imgPreviewImg").src=ev.target.result;
+    const b64=ev.target.result.split(",")[1],mime=file.type||"image/jpeg";
+    const txt=await callGemini([
+      {inline_data:{mime_type:mime,data:b64}},
+      {text:`この画像の商品やレシートを分析。カテゴリー: ${CATEGORIES.join(", ")}\nJSON形式のみで回答（他テキスト不要）:\n{"items":[{"name":"商品名","category":"カテゴリー名","estimated_price":推定価格}],"description":"説明"}`}
+    ]);
     if(txt){
       try{
-        const clean=txt.replace(/```json|```/g,"").trim();
-        const data=JSON.parse(clean);
-        if(data.items&&data.items.length){
-          _imgItems=data.items;
-          document.getElementById("imgResult").innerHTML=`<div class="fs12 c-888 mb8">${data.description||""}</div>`
-            +data.items.map((item,i)=>`<div class="fr" style="padding:10px 12px;background:#f8f8ff;border-radius:12px;margin-bottom:8px">
+        const d=JSON.parse(txt.replace(/```json|```/g,"").trim());
+        if(d.items&&d.items.length){
+          _imgItems=d.items;
+          document.getElementById("imgResult").innerHTML=
+            `<div class="fs12 c-888 mb8">${d.description||""}</div>`
+            +d.items.map((item,i)=>`<div class="fr" style="padding:10px 12px;background:#f8f8ff;border-radius:12px;margin-bottom:8px">
               <input type="checkbox" checked id="imgChk${i}" style="width:20px;height:20px;accent-color:#764ba2;flex-shrink:0">
-              <div style="flex:1;margin-left:8px"><div class="fw7 fs14">${item.name}</div><div class="fr" style="margin-top:4px">
-                <span style="background:#764ba222;color:#764ba2;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">${item.category}</span>
-                ${item.estimated_price>0?`<span class="fs12 c-888">≈ ${yen(item.estimated_price)}</span>`:""}
-              </div></div>
+              <div style="flex:1;margin-left:8px">
+                <div class="fw7 fs14">${item.name}</div>
+                <div class="fr" style="margin-top:4px">
+                  <span style="background:#764ba222;color:#764ba2;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700">${item.category}</span>
+                  ${item.estimated_price>0?`<span class="fs12 c-888">≈ ${yen(item.estimated_price)}</span>`:""}
+                </div>
+              </div>
               <button class="btn-green" onclick="applyImg(${i})">1件反映</button>
             </div>`).join("")
             +`<div class="fc" style="margin-top:12px">
-              <div class="fr" style="margin-bottom:8px">
-                <span class="fs12 c-888" style="flex:1">口座・支払方法を選択して一括追加</span>
-              </div>
-              <select class="inp" id="imgAccount">${state.accounts.map(a=>`<option value="${a.id}">${a.name}</option>`).join("")}</select>
+              <div class="fs12 c-888 mb8">口座・支払方法を選んで一括追加</div>
+              <select class="inp" id="imgAccount">${st.accounts.map(a=>`<option value="${a.id}">${a.name}</option>`).join("")}</select>
               <select class="inp" id="imgMethod">${METHODS.map(m=>`<option>${m}</option>`).join("")}</select>
               <button onclick="addAllImg()" style="width:100%;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none;border-radius:12px;padding:14px;font-weight:700;font-size:15px;cursor:pointer">✅ チェック済みをすべて追加</button>
             </div>`;
         }else{document.getElementById("imgResult").innerHTML='<div style="color:#e67e22;font-size:13px">商品を検出できませんでした</div>';}
       }catch{document.getElementById("imgResult").innerHTML='<div style="color:#e74c3c;font-size:13px">結果の解析に失敗しました</div>';}
     }
-    btn.textContent="📷 写真を撮る / 選択";btn.disabled=false;
-    input.value="";
+    btn.textContent="📷 写真を撮る / 選択";btn.disabled=false;input.value="";
   };
   reader.readAsDataURL(file);
 }
+
 function addAllImg(){
   const accId=Number(document.getElementById("imgAccount").value);
   const method=document.getElementById("imgMethod").value;
   if(!accId){alert("口座を選択してください");return;}
   const today=new Date().toISOString().slice(0,10);
-  let count=0, totalAmt=0;
+  let count=0,totalAmt=0;
   _imgItems.forEach((item,i)=>{
     const chk=document.getElementById("imgChk"+i);
     if(chk&&chk.checked&&item.estimated_price>0){
-      state.expenses.push({id:Date.now()+i,accountId:accId,date:today,amount:item.estimated_price,category:item.category,method,memo:item.name,satisfaction:3});
-      totalAmt+=item.estimated_price;
-      count++;
+      st.expenses.push({id:Date.now()+i,accountId:accId,date:today,amount:item.estimated_price,category:item.category,method:method,memo:item.name,satisfaction:3});
+      totalAmt+=item.estimated_price;count++;
     }
   });
-  if(count===0){alert("追加できる項目がありません（価格が0の項目はスキップされます）");return;}
-  const acc=state.accounts.find(a=>a.id===accId);if(acc)acc.balance-=totalAmt;
-  saveState();renderAll();populateSelects();
+  if(count===0){alert("追加できる項目がありません（価格0の項目はスキップされます）");return;}
+  const acc=st.accounts.find(a=>a.id===accId);if(acc)acc.balance-=totalAmt;
+  save();renderAll();popSel();
   document.getElementById("imgResult").innerHTML=`<div style="padding:16px;background:rgba(78,205,196,0.1);border-radius:12px;text-align:center"><div style="font-size:24px;margin-bottom:8px">✅</div><div class="fw7" style="color:#4ECDC4">${count}件の支出を追加しました</div><div class="fs13 c-888" style="margin-top:4px">合計: ${yen(totalAmt)}</div></div>`;
 }
+
 function applyImg(i){
   const item=_imgItems[i];if(!item)return;
   document.getElementById("expCategory").value=item.category;
   document.getElementById("expMemo").value=item.name;
   if(item.estimated_price>0)document.getElementById("expAmount").value=item.estimated_price;
   document.querySelectorAll(".nav-btn").forEach(b=>{b.classList.remove("active");b.style.color="#aaa";});
-  const target=document.querySelector('[data-tab="expenses"]');
-  target.classList.add("active");target.style.color=THEMES[state.theme].accent;
-  document.querySelectorAll(".tab-content").forEach(t=>t.classList.remove("active"));
+  const t=document.querySelector('[data-tab="expenses"]');t.classList.add("active");t.style.color=THEMES[st.theme].accent;
+  document.querySelectorAll(".tab-content").forEach(x=>x.classList.remove("active"));
   document.getElementById("tab-expenses").classList.add("active");
 }
 
